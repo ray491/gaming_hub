@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: hidden;
+    background: #071114;
+    color: #f4f7ed;
+    font-family: "Courier New", monospace;
+}
+
+#ascii-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ascii-hero {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100dvh;
+    place-items: center;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(26, 40, 59, 0.42), transparent 58%),
+        #080a12;
+}
+
+.ascii-art {
+    position: absolute;
+    inset: -2rem -8rem;
+    margin: 0;
+    overflow: hidden;
+    white-space: pre;
+    font-size: clamp(0.4rem, min(0.9vw, 1.5vh), 0.78rem);
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+    transform: rotate(-4deg) scale(1.08);
+    animation: drift 12s ease-in-out infinite alternate;
+}
+
+.ascii-art-dim {
+    z-index: 1;
+    color: rgba(109, 178, 193, 0.5);
+    background: linear-gradient(90deg, rgba(72, 140, 154, 0.85), rgba(214, 176, 69, 0.82), rgba(191, 71, 135, 0.78));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(85, 158, 184, 0.16);
+}
+
+.ascii-art-spotlight {
+    z-index: 2;
+    color: #f4f0db;
+    text-shadow: 0 0 12px rgba(255, 246, 184, 0.5);
+    opacity: 0.95;
+    -webkit-mask-image: radial-gradient(circle 13rem at var(--spotlight-x) var(--spotlight-y), #000 0%, rgba(0, 0, 0, 0.85) 35%, transparent 76%);
+    mask-image: radial-gradient(circle 13rem at var(--spotlight-x) var(--spotlight-y), #000 0%, rgba(0, 0, 0, 0.85) 35%, transparent 76%);
+}
+
+.ascii-glow {
+    position: absolute;
+    width: min(34rem, 82vw, 82vh);
+    height: min(34rem, 82vw, 82vh);
+    border: 1px solid rgba(207, 238, 91, 0.16);
+    border-radius: 50%;
+    box-shadow: 0 0 80px rgba(207, 238, 91, 0.08), inset 0 0 80px rgba(207, 238, 91, 0.05);
+}
+
+.games {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 22rem));
+    min-height: 100vh;
+    min-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    text-align: center;
+} 
+
+.game-button {
+    display: block;
+    width: min(100%, 22rem);
+    max-width: 22rem;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    touch-action: manipulation;
+    border: 1px solid rgba(222, 246, 127, 0.65);
+    border-radius: 0.35rem;
+    background: #102321;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.game-button:hover,
+.game-button:focus-visible {
+    border-color: #e2f67f;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.45), 0 0 2rem rgba(207, 238, 91, 0.18);
+    transform: translateY(-0.4rem);
+}
+
+.game-button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    object-fit: contain;
+    opacity: 0.86;
+    transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.game-button:hover img,
+.game-button:focus-visible img {
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+@keyframes drift {
+    from { transform: rotate(-3deg) scale(1.18) translate(-1%, -1%); }
+    to { transform: rotate(2deg) scale(1.23) translate(1%, 1%); }
+}
+
+@media (max-width: 600px) {
+    .games {
+        grid-template-columns: minmax(0, 1fr);
+        gap: clamp(0.75rem, 3vw, 1.25rem);
+    }
+
+    .game-button {
+        width: min(82vw, 22rem);
+        justify-self: center;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .games {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(0.75rem, 3vw, 1.5rem);
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .game-button {
+        width: min(38vw, 18rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ascii-art,
+    .game-button,
+    .game-button img {
+        animation: none;
+        transition: none;
+    }
+}

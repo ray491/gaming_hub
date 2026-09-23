@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="/js/index.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Gaming Hub</title>
+</head>
+<body>
+    <div id="ascii-background" aria-hidden="true"></div>
+    <div class="games">
+       <button class="game-button" onclick="NavigateToPage('/pages/minecraft.html')"><img src="/img/minecraft.jpg" alt="minecraft"></button> 
+       <button class="game-button" onclick="NavigateToPage('/pages/survival_race.html')"><img src="/img/survival_race.jpg" alt="survival race"></button>
+    </div>
+    <script type="text/babel">
+        function AsciiBackground() {
+            const [spotlight, setSpotlight] = React.useState({ x: 50, y: 50 });
+            const characters = "!<>[]{}()\/\\|+-=~:;,.?01IL_";
+            const rows = Array.from({ length: 90 }, (_, row) =>
+                Array.from({ length: 320 }, (_, column) =>
+                    characters[(row * 17 + column * 7 + row * column) % characters.length]
+                ).join("")
+            ).join("\n");
+
+            React.useEffect(() => {
+                function updateSpotlight(event) {
+                    setSpotlight({
+                        x: (event.clientX / window.innerWidth) * 100,
+                        y: (event.clientY / window.innerHeight) * 100,
+                    });
+                }
+
+                window.addEventListener("pointermove", updateSpotlight);
+                return () => window.removeEventListener("pointermove", updateSpotlight);
+            }, []);
+
+            const spotlightStyle = {
+                "--spotlight-x": `${spotlight.x}%`,
+                "--spotlight-y": `${spotlight.y}%`,
+            };
+
+            return (
+                <div className="ascii-hero" style={spotlightStyle}>
+                    <pre className="ascii-art ascii-art-dim">{rows}</pre>
+                    <pre className="ascii-art ascii-art-spotlight">{rows}</pre>
+                    <div className="ascii-glow"></div>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('ascii-background')).render(<AsciiBackground />);
+    </script>
+</body>
+</html>
