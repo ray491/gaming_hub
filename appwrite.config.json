@@ -1,0 +1,23 @@
+{
+  "projectId": "6abfbdcd001f4d7d1924",
+  "endpoint": "https://fra.cloud.appwrite.io/v1",
+  "sites": [
+    {
+      "$id": "<APPWRITE_SITE_ID>",
+      "name": "Gaming HP",
+      "enabled": true,
+      "logging": true,
+      "framework": "other",
+      "timeout": 30,
+      "installCommand": "npm install",
+      "buildCommand": "npm run build",
+      "startCommand": "npm start",
+      "outputDirectory": ".",
+      "specification": "s-1vcpu-512mb",
+      "buildRuntime": "node-22",
+      "adapter": "ssr",
+      "fallbackFile": "",
+      "path": "."
+    }
+  ]
+}
