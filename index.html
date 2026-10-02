@@ -3,64 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="/js/index.js"></script>
+    <script defer src="/js/index.js"></script>
     <link rel="stylesheet" href="/css/index.css">
     <title>Gaming HP</title>
 </head>
 <body>
-    <div id="ascii-background" aria-hidden="true"></div>
+    <div id="ascii-background" aria-hidden="true">
+        <div class="ascii-hero">
+            <pre class="ascii-art ascii-art-dim"></pre>
+            <div class="ascii-glow"></div>
+        </div>
+    </div>
     <div class="games">
-    <button class="game-button" onclick="NavigateToPage('/pages/minecraft.html')"><img src="/img/minecraft.jpg" alt="Minecraft game scene with block-built terrain and structures in a colorful, adventurous setting"></button> 
-    <button class="game-button" onclick="NavigateToPage('/pages/survival_race.html')"><img src="/img/survival_race.jpg" alt="Survival racing game scene with vehicles competing on a challenging track in an energetic setting"></button>
-     <button class="game-button" onclick="NavigateToPage('/pages/polytrack.html')"><img src="/img/polytrack.jpg" alt="Polytrack racing game scene featuring a vehicle on a winding track in a bright, fast-paced setting"></button>
-     <button class="game-button" onclick="NavigateToPage('/pages/geometry_dash.html')"><img src="/img/geometry_dash.jpg" alt="Geometry Dash game scene with a geometric player character navigating a hazardous obstacle course in a vivid, energetic setting"></button>
-    <button class="game-button" onclick="NavigateToPage('/pages/subwaysurf.html')"><img src="/img/subwaysurfers.jpg" alt="Subway Surfers game scene with a runner moving through a colorful subway environment in an exciting, fast-paced setting"></button>
-    <button class="game-button" onclick="NavigateToPage('/pages/drivemad.html')"><img src="/img/drivemad.jpg" alt="Drive Mad game scene with a vehicle racing through a city environment in a fast-paced, exciting setting"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/minecraft.html')"><img src="/img/minecraft.jpg" alt="Minecraft game scene with block-built terrain and structures in a colorful, adventurous setting" fetchpriority="high" decoding="async"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/survival_race.html')"><img src="/img/survival_race.jpg" alt="Survival racing game scene with vehicles competing on a challenging track in an energetic setting" loading="lazy" decoding="async"></button>
+     <button class="game-button" onclick="NavigateToPage('/pages/polytrack.html')"><img src="/img/polytrack.jpg" alt="Polytrack racing game scene featuring a vehicle on a winding track in a bright, fast-paced setting" loading="lazy" decoding="async"></button>
+     <button class="game-button" onclick="NavigateToPage('/pages/geometry_dash.html')"><img src="/img/geometry_dash.jpg" alt="Geometry Dash game scene with a geometric player character navigating a hazardous obstacle course in a vivid, energetic setting" loading="lazy" decoding="async"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/subwaysurf.html')"><img src="/img/subwaysurfers.jpg" alt="Subway Surfers game scene with a runner moving through a colorful subway environment in an exciting, fast-paced setting" loading="lazy" decoding="async"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/drivemad.html')"><img src="/img/drivemad.jpg" alt="Drive Mad game scene with a vehicle racing through a city environment in a fast-paced, exciting setting" loading="lazy" decoding="async"></button>
     <!-- <button class="game-button" onclick="NavigateToPage('/pages/monkeymarkt.html')"><img src="/img/monkey.jpeg" alt="Monkey Mart game scene with a monkey character in a vibrant, playful setting"></button> -->
-    <button class="game-button" onclick="NavigateToPage('/pages/escaperoad.html')"><img src="/img/escape.jpeg" alt="escape road game scene with a vehicle navigating through a challenging environment in a dynamic, engaging setting"></button>
-    <button class="game-button" onclick="NavigateToPage('/pages/Five-Nights-at-Epstein/index.html')"><img src="img/fnaf.jpeg" alt="Five Nights at Epstein game scene with a player character in a colorful, interactive environment"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/escaperoad.html')"><img src="/img/escape.jpeg" alt="escape road game scene with a vehicle navigating through a challenging environment in a dynamic, engaging setting" loading="lazy" decoding="async"></button>
+    <button class="game-button" onclick="NavigateToPage('/pages/Five-Nights-at-Epstein/index.html')"><img src="img/fnaf.jpeg" alt="Five Nights at Epstein game scene with a player character in a colorful, interactive environment" loading="lazy" decoding="async"></button>
 </div>
-    <script type="text/babel">
-        function AsciiBackground() {
-            const [spotlight, setSpotlight] = React.useState({ x: 50, y: 50 });
-            const characters = "!<>[]{}()\/\\|+-=~:;,.?01IL_";
-            const rows = Array.from({ length: 90 }, (_, row) =>
-                Array.from({ length: 320 }, (_, column) =>
-                    characters[(row * 17 + column * 7 + row * column) % characters.length]
-                ).join("")
-            ).join("\n");
 
-            React.useEffect(() => {
-                function updateSpotlight(event) {
-                    setSpotlight({
-                        x: (event.clientX / window.innerWidth) * 100,
-                        y: (event.clientY / window.innerHeight) * 100,
-                    });
-                }
-
-                window.addEventListener("pointermove", updateSpotlight);
-                return () => window.removeEventListener("pointermove", updateSpotlight);
-            }, []);
-
-            const spotlightStyle = {
-                "--spotlight-x": `${spotlight.x}%`,
-                "--spotlight-y": `${spotlight.y}%`,
-            };
-
-            return (
-                <div className="ascii-hero" style={spotlightStyle}>
-                    <pre className="ascii-art ascii-art-dim">{rows}</pre>
-                    <pre className="ascii-art ascii-art-spotlight">{rows}</pre>
-                    <div className="ascii-glow"></div>
-                </div>
-            );
-        }
-
-        ReactDOM.createRoot(document.getElementById('ascii-background')).render(<AsciiBackground />);
-    </script>
 </body>
 </html>
