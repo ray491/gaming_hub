@@ -7,62 +7,9 @@ body {
     min-height: 100dvh;
     margin: 0;
     overflow-x: hidden;
-    background: #071114;
+    background: #2b2b2b;
     color: #f4f7ed;
     font-family: "Courier New", monospace;
-}
-
-#ascii-background {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.ascii-hero {
-    position: relative;
-    display: grid;
-    min-height: 100vh;
-    min-height: 100dvh;
-    place-items: center;
-    isolation: isolate;
-    background:
-        radial-gradient(circle at 50% 45%, rgba(26, 40, 59, 0.42), transparent 58%),
-        #080a12;
-}
-
-.ascii-art {
-    position: absolute;
-    inset: -2rem -8rem;
-    margin: 0;
-    overflow: hidden;
-    white-space: pre;
-    font-size: clamp(0.4rem, min(0.9vw, 1.5vh), 0.78rem);
-    line-height: 1.35;
-    letter-spacing: 0.08em;
-    transform: rotate(-4deg) scale(1.08);
-    contain: paint;
-}
-
-.ascii-art-dim {
-    color: rgba(109, 178, 193, 0.5);
-    background: linear-gradient(90deg, rgba(72, 140, 154, 0.85), rgba(214, 176, 69, 0.82), rgba(191, 71, 135, 0.78));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(85, 158, 184, 0.16);
-    -webkit-mask-image: radial-gradient(circle 26rem at 50% 45%, #000 0%, rgba(0, 0, 0, 0.75) 55%, transparent 100%);
-    mask-image: radial-gradient(circle 26rem at 50% 45%, #000 0%, rgba(0, 0, 0, 0.75) 55%, transparent 100%);
-}
-
-.ascii-glow {
-    position: absolute;
-    width: min(34rem, 82vw, 82vh);
-    height: min(34rem, 82vw, 82vh);
-    border: 1px solid rgba(207, 238, 91, 0.16);
-    border-radius: 50%;
-    box-shadow: 0 0 80px rgba(207, 238, 91, 0.08), inset 0 0 80px rgba(207, 238, 91, 0.05);
 }
 
 .games {
