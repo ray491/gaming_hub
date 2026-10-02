@@ -12,9 +12,29 @@ body {
     font-family: "Courier New", monospace;
 }
 
+.page-layout {
+    display: grid;
+    grid-template-columns: minmax(7rem, 1fr) minmax(0, 50rem) minmax(7rem, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-left: max(1rem, env(safe-area-inset-left));
+}
+
+.ad-rail {
+    min-width: 0;
+}
+
+.ad-rail iframe {
+    max-width: 100%;
+}
+
 .games {
     position: relative;
     z-index: 1;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 22rem));
     min-height: 100vh;
@@ -65,6 +85,17 @@ body {
 .game-button:focus-visible img {
     opacity: 1;
     transform: scale(1.04);
+}
+
+@media (max-width: 1200px) {
+    .page-layout {
+        display: block;
+        padding: 0;
+    }
+
+    .ad-rail {
+        display: none;
+    }
 }
 
 @media (max-width: 600px) {
