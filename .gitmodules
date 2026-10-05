@@ -1,0 +1,3 @@
+[submodule "pages/hollow-knight-js"]
+	path = pages/hollow-knight-js
+	url = https://github.com/TinTinWinata/hollow-knight-js.git

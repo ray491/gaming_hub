@@ -38,6 +38,8 @@ function sendError(response, statusCode, message) {
   response.end(message);
 }
 
+const hollowKnightUrl = 'https://cdn.jsdelivr.net/gh/TinTinWinata/hollow-knight-js@b76aa97c331a439b68b7501f9e43356606ebcaf7/index.html';
+
 const server = http.createServer(async (request, response) => {
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     response.setHeader('Allow', 'GET, HEAD');
@@ -50,6 +52,12 @@ const server = http.createServer(async (request, response) => {
     pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
   } catch {
     sendError(response, 400, 'Bad request');
+    return;
+  }
+
+  if (['/pages/hollow-knight-js', '/pages/hollow-knight-js/', '/pages/hollow-knight-js/index.html'].includes(pathname)) {
+    response.writeHead(302, { Location: hollowKnightUrl });
+    response.end();
     return;
   }
 
